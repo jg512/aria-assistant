@@ -1,0 +1,139 @@
+{
+  "assistant": {
+    "name": "Aria",
+    "wake_words": ["hey aria", "aria"],
+    "personality": "You are Aria, a friendly and concise local AI assistant running on a Raspberry Pi. You speak in short, natural sentences optimised for voice. Never use markdown, bullet points, lists, or code blocks in your replies — only plain spoken language. You have tools available: use them proactively when the user intent is clear. Always confirm actions you take. Keep responses under 3 sentences unless the user asks for detail.",
+    "max_response_tokens": 200,
+    "temperature": 0.0,
+    "conversation_reset_after_silence_sec": 300,
+    "shutdown_confirmation": true
+  },
+  "ollama": {
+    "host": "http://localhost:11434",
+    "model": "qwen2:0.5b",
+    "timeout": 1200,
+    "startup_retries": 1,
+    "startup_retry_delay_sec": 3
+  },
+  "stt": {
+    "engine": "faster-whisper",
+    "model_size": "base.en",
+    "device": "cpu",
+    "compute_type": "int8",
+    "language": "en",
+    "silence_threshold": 0.01,
+    "silence_duration_sec": 1.5,
+    "max_record_sec": 30,
+    "no_speech_prob_threshold": 0.6
+  },
+  "tts": {
+    "engine": "piper",
+    "piper_binary": "/home/oem/aria-assistant/models/piper/piper",
+    "model_path": "/home/oem/models/en_US-lessac-medium.onnx",
+    "model_config": "/home/oem/models/en_US-lessac-medium.onnx.json",
+    "output_device": "default",
+    "speaking_rate": 1.0,
+    "duck_volume": 20,
+    "duck_restore_delay_sec": 0.3
+  },
+  "wake_word": {
+    "engine": "openwakeword",
+    "models": ["hey_jarvis"],
+    "threshold": 0.5,
+    "device_index": 9,
+    "chunk_size": 1280
+  },
+  "music": {
+    "directories": [
+      "./Music",
+      "./media/USB_DRIVE/Music"
+    ],
+    "supported_formats": ["mp3", "flac", "ogg", "wav", "m4a", "opus"],
+    "default_volume": 80,
+    "mpv_socket": "/tmp/mpv-aria.sock",
+    "librespot_path": "/snap/bin/librespot-dev.librespot",
+    "spotify_device_name": "Aria Assistant",
+    "spotify_user": "",
+    "spotify_password": "",
+    "crash_check_interval_sec": 5,
+    "radio_stations": {
+      "BBC World Service": "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service",
+      "DLF": "https://st01.sslstream.dlf.de/dlf/01/high/aac/stream.aac",
+      "NDR Info": "https://icecast.ndr.de/ndr/ndrinfo/niedersachsen/mp3/128/stream.mp3",
+      "Jazz Radio": "https://jazz.streamr.ru/jazz-128.mp3",
+      "Classical KDFC": "https://playerservices.streamtheworld.com/api/livestream-redirect/KDFCAAC.aac"
+    }
+  },
+  "weather": {
+    "latitude": 54.32,
+    "longitude": 12.11,
+    "location_name": "Rostock",
+    "units": "celsius",
+    "cache_minutes": 30
+  },
+  "home_assistant": {
+    "enabled": false,
+    "host": "http://homeassistant.local:8123",
+    "token": "YOUR_LONG_LIVED_ACCESS_TOKEN_HERE",
+    "timeout": 5
+  },
+  "todo": {
+    "file_path": "./data/todo.json"
+  },
+  "news": {
+    "feeds": [
+      {"name": "Tageschau", "url": "https://www.tagesschau.de/xml/rss2"},
+      {"name": "Zeit Online", "url": "https://newsfeed.zeit.de/index"}
+    ],
+    "max_headlines": 5,
+    "cache_minutes": 60
+  },
+  "calendar": {
+    "ics_path": "./calendar.ics",
+    "lookahead_days": 7,
+    "reminders": {
+      "enabled": true,
+      "lead_minutes": [10, 1]
+    }
+  },
+  "memory": {
+    "file_path": "./data/memory.json",
+    "max_facts": 50
+  },
+  "alarms": {
+    "file_path": "./data/alarms.json",
+    "default_sound": "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga"
+  },
+  "notes": {
+    "file_path": "./data/notes.json"
+  },
+  "web_search": {
+    "max_results": 3
+  },
+  "system_monitor": {
+    "enabled": true
+  },
+  "heartbeat": {
+    "enabled": true,
+    "morning_briefing_time": "08:00",
+    "briefing_components": ["time", "weather", "calendar", "todo"]
+  },
+  "watchdog": {
+    "enabled": true,
+    "mic_check_enabled": false,
+    "mic_timeout_sec": 10,
+    "check_interval_sec": 5
+  },
+  "dashboard": {
+    "enabled": true,
+    "host": "0.0.0.0",
+    "port": 5001,
+    "history_limit": 50
+  },
+  "system": {
+    "log_level": "INFO",
+    "log_file": "./logs/aria.log",
+    "conversation_history_limit": 10,
+    "data_dir": "./data"
+  }
+}

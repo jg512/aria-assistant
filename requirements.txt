@@ -1,0 +1,43 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Aria — Raspberry Pi 4 Local AI Companion
+# The setup.sh script handles installation automatically.
+#
+# Manual install:
+#   pip install faster-whisper pyaudio numpy requests flask psutil
+#   pip install --no-deps openwakeword
+#   pip install "onnxruntime>=1.16" soundfile
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Speech-to-Text
+faster-whisper>=1.0.0
+
+# Audio I/O
+pyaudio>=0.2.14
+numpy>=1.24.0
+
+# HTTP (Ollama, weather, Home Assistant)
+requests>=2.31.0
+httpx>=0.27.0
+
+# Web dashboard
+flask>=3.0.0
+psutil>=5.9.0
+
+# Wake word — NOTE: do NOT install openwakeword via pip directly.
+# tflite-runtime (its default dep) does not exist for Python 3.12+ on x86_64.
+# setup.sh installs it with --no-deps + onnxruntime instead.
+# openwakeword>=0.6.0   ← intentionally commented out; setup.sh handles this
+
+# onnxruntime backend for openwakeword (all platforms, all Python versions)
+onnxruntime>=1.16.0
+soundfile>=0.12.0
+
+# Testing
+pytest>=8.0.0
+pytest-timeout>=2.3.0
+
+# Tools
+mutagen>=1.47.0
+duckduckgo_search>=5.0.0
+yt-dlp>=2024.3.10
+
